@@ -14,17 +14,19 @@
 
 typedef std::list<MYSQL *> CONNECTION_HANDLE_LIST;
 typedef std::list<MYSQL *>::iterator ITER_CONNECTION_HANDLE_LIST;
-#define CONNECTION_NUM 10 //同时打开的连接数
+#define CONNECTION_NUM 1 //同时打开的连接数
 
 class CMySQLMan
 {
-public:
+private:
 	CMySQLMan();
 	CMySQLMan(const char *host, const char *user, const char *password, const char *db, unsigned int port=3306);
+
+public:
 	virtual ~CMySQLMan();
 	
 public:
-	//static CMySQLMan* GetInstance();
+	static CMySQLMan* GetInstance();
 	bool ConnectDB();       //连接数据库
 	MYSQL_RES* SelectRecord(const char *szSql); //选择记录，返回结果集
 	bool SelectDB(const char *szDB);   //选择数据库
@@ -67,12 +69,9 @@ public:
 	char m_password[20];   //密码
 	char m_db[20];     //数据库名
 	unsigned int m_port;   //端口
-/*
+
 private:
 	static CMySQLMan *cMySQLMan;
-	*/
 };
-
-//CMySQLMan* CMySQLMan::cMySQLMan = NULL;
 
 #endif // !defined(AFX_MYSQLMAN_H__4B2476BE_47D0_48FE_857C_FCA2930F863B__INCLUDED_)

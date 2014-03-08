@@ -2,13 +2,13 @@
 
 [General Info]
 Version=1
-LastClass=CLoginDlg
+LastClass=CUserListDlg
 LastTemplate=CDialog
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "library.h"
 LastPage=0
 
-ClassCount=7
+ClassCount=8
 Class1=CLibraryApp
 Class2=CAboutDlg
 Class3=CLibraryDoc
@@ -16,11 +16,13 @@ Class4=CLibraryView
 Class5=CLoginDlg
 Class6=CMainFrame
 
-ResourceCount=3
-Resource1=IDD_LOGIN
+ResourceCount=4
+Resource1=IDD_USERLIST
 Resource2=IDD_ABOUTBOX
 Class7=CTestDlg
-Resource3=IDR_MAINFRAME
+Resource3=IDD_LOGIN
+Class8=CUserListDlg
+Resource4=IDR_MAINFRAME
 
 [CLS:CLibraryApp]
 Type=0
@@ -53,7 +55,7 @@ Type=0
 BaseClass=CDialog
 HeaderFile=LoginDlg.h
 ImplementationFile=LoginDlg.cpp
-LastObject=IDC_EDIT_SID
+LastObject=CLoginDlg
 Filter=D
 VirtualFilter=dWC
 
@@ -62,6 +64,8 @@ Type=0
 BaseClass=CFrameWnd
 HeaderFile=MainFrm.h
 ImplementationFile=MainFrm.cpp
+Filter=T
+VirtualFilter=fWC
 
 [DLG:IDD_ABOUTBOX]
 Type=1
@@ -74,24 +78,10 @@ Control4=IDOK,button,1342373889
 
 [MNU:IDR_MAINFRAME]
 Type=1
-Class=?
-Command1=ID_FILE_NEW
-Command2=ID_FILE_OPEN
-Command3=ID_FILE_SAVE
-Command4=ID_FILE_SAVE_AS
-Command5=ID_FILE_PRINT
-Command6=ID_FILE_PRINT_PREVIEW
-Command7=ID_FILE_PRINT_SETUP
-Command8=ID_FILE_MRU_FILE1
-Command9=ID_APP_EXIT
-Command10=ID_EDIT_UNDO
-Command11=ID_EDIT_CUT
-Command12=ID_EDIT_COPY
-Command13=ID_EDIT_PASTE
-Command14=ID_VIEW_TOOLBAR
-Command15=ID_VIEW_STATUS_BAR
-Command16=ID_APP_ABOUT
-CommandCount=16
+Class=CMainFrame
+Command1=ID_USER_LIST
+Command2=ID_APP_ABOUT
+CommandCount=2
 
 [ACL:IDR_MAINFRAME]
 Type=1
@@ -143,4 +133,21 @@ ImplementationFile=TestDlg.cpp
 BaseClass=CDialog
 Filter=D
 LastObject=CTestDlg
+
+[DLG:IDD_USERLIST]
+Type=1
+Class=CUserListDlg
+ControlCount=3
+Control1=IDOK,button,1342242817
+Control2=IDCANCEL,button,1342242816
+Control3=IDC_USERLIST,SysListView32,1350631425
+
+[CLS:CUserListDlg]
+Type=0
+HeaderFile=UserListDlg.h
+ImplementationFile=UserListDlg.cpp
+BaseClass=CDialog
+Filter=D
+LastObject=IDC_USERLIST
+VirtualFilter=dWC
 

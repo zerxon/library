@@ -6,13 +6,13 @@
 --------------------Configuration: Library - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSPC636.tmp" with contents
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP35F9.tmp" with contents
 [
-/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/Library.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
-"E:\C++\project\Library\UserService.cpp"
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /Fp"Debug/Library.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"E:\C++\project\Library\MySQLMan.cpp"
 ]
-Creating command line "cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSPC636.tmp" 
-Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSPC637.tmp" with contents
+Creating command line "cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSP35F9.tmp" 
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP35FA.tmp" with contents
 [
 /nologo /subsystem:windows /incremental:yes /pdb:"Debug/Library.pdb" /debug /machine:I386 /out:"Debug/Library.exe" /pdbtype:sept 
 ".\Debug\Library.obj"
@@ -20,20 +20,18 @@ Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSPC637.tmp" with 
 ".\Debug\LibraryView.obj"
 ".\Debug\LoginDlg.obj"
 ".\Debug\MainFrm.obj"
-".\Debug\MySQLMan.obj"
 ".\Debug\StdAfx.obj"
+".\Debug\UserListDlg.obj"
 ".\Debug\User.obj"
 ".\Debug\UserService.obj"
+".\Debug\MySQLMan.obj"
 ".\Debug\Library.res"
 ]
-Creating command line "link.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSPC637.tmp"
+Creating command line "link.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSP35FA.tmp"
 <h3>Output Window</h3>
 Compiling...
-UserService.cpp
+MySQLMan.cpp
 Linking...
-Creating command line "bscmake.exe /nologo /o"Debug/Library.bsc"  ".\Debug\StdAfx.sbr" ".\Debug\Library.sbr" ".\Debug\LibraryDoc.sbr" ".\Debug\LibraryView.sbr" ".\Debug\LoginDlg.sbr" ".\Debug\MainFrm.sbr" ".\Debug\MySQLMan.sbr" ".\Debug\User.sbr" ".\Debug\UserService.sbr""
-Creating browse info file...
-<h3>Output Window</h3>
 
 
 

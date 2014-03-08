@@ -9,6 +9,8 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
+#include "UserListDlg.h"
+
 class CMainFrame : public CFrameWnd
 {
 	
@@ -44,11 +46,12 @@ protected:  // control bar embedded members
 protected:
 	//{{AFX_MSG(CMainFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-		// NOTE - the ClassWizard will add and remove member functions here.
-		//    DO NOT EDIT what you see in these blocks of generated code!
+	afx_msg void OnUserList();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
+
+//CMainFrame::adminType = false;
 
 /////////////////////////////////////////////////////////////////////////////
 

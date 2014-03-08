@@ -1,13 +1,14 @@
 #if !defined(AFX_LOGINDLG_H__3CB98107_C310_4B46_AFB4_D4CBB1D3FB78__INCLUDED_)
 #define AFX_LOGINDLG_H__3CB98107_C310_4B46_AFB4_D4CBB1D3FB78__INCLUDED_
 
-#include "UserService.h"
 
 #if _MSC_VER > 1000
 #pragma once
 #endif // _MSC_VER > 1000
 // LoginDlg.h : header file
 //
+
+#include "UserService.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CLoginDlg dialog
@@ -17,6 +18,7 @@ class CLoginDlg : public CDialog
 // Construction
 public:
 	CLoginDlg(CWnd* pParent = NULL);   // standard constructor
+	bool IsUserType();
 
 // Dialog Data
 	//{{AFX_DATA(CLoginDlg)
@@ -43,6 +45,7 @@ protected:
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:
+	bool userType;
 	UserService userService;
 };
 

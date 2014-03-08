@@ -12,6 +12,8 @@ static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
 
+CMySQLMan* CMySQLMan::cMySQLMan = NULL;
+
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
@@ -36,15 +38,15 @@ CMySQLMan::CMySQLMan(const char *host, const char *user, const char *password, c
 	InitializeCriticalSection(&m_csList);
 }
 
-/*
 CMySQLMan* CMySQLMan::GetInstance()
 {
-	if(cMySQLMan == NULL)
-		cMySQLMan = new CMySQLMan();
+	if(CMySQLMan::cMySQLMan == NULL) {
+		CMySQLMan::cMySQLMan = new CMySQLMan();
+		CMySQLMan::cMySQLMan->ConnectDB();
+	}
 
-	return cMySQLMan;
+	return CMySQLMan::cMySQLMan;
 }
-*/
 
 CMySQLMan::~CMySQLMan()
 {
@@ -57,6 +59,9 @@ CMySQLMan::~CMySQLMan()
 		mysql_close((*iterIdle));
 	}
 	DeleteCriticalSection(&m_csList);
+
+	if(CMySQLMan::cMySQLMan)
+		delete CMySQLMan::cMySQLMan;
 }
 
 bool CMySQLMan::ConnectDB()
@@ -74,9 +79,10 @@ bool CMySQLMan::ConnectDB()
 					OutErrors(pMySql);
 					return false;
 				}
-				
-				//设置编码
-				mysql_set_character_set(pMySql,"GBK");
+
+				bool isReconnect = true;
+				mysql_options(pMySql, MYSQL_OPT_RECONNECT, &isReconnect);	//设置长连接
+				mysql_set_character_set(pMySql,"GBK");						//设置编码
 
 				m_lsIdleList.push_back(pMySql);
 			}

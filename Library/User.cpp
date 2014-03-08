@@ -35,3 +35,49 @@ CString User::GetName()
 {
 	return this->name;
 }
+
+void User::SetSid(CString sid)
+{
+	this->sid = sid;
+}
+
+CString User::GetSid()
+{
+	return this->sid;
+}
+
+void User::SetPassword(CString password)
+{
+	this->password = password;
+}
+
+CString User::GetPassword()
+{
+	return this->password;
+}
+
+void User::SetSex(int sex)
+{
+	this->sex = sex;
+}
+
+CString User::GetSex()
+{
+	CString strSex = "ÄĞ";
+
+	if(this->sex == 1)
+		strSex = "Å®";
+
+	return strSex;
+}
+
+void User::SetIsAdmin(bool isAdmin)
+{
+	this->isAdmin = isAdmin;
+}
+
+bool User::GetIsAdmin()
+{
+	return this->isAdmin;
+}
+

@@ -88,10 +88,24 @@ void CLoginDlg::OnOK()
 	}
 	else
 	{
-		if(userService.Login(m_sid, m_password))
+		if(userService.Login(m_sid, m_password)) 
+		{
+			if(userService.IsUserType)
+				this->userType = true;
+			else
+				this->userType = false;
+
 			CDialog::OnOK();
+		}
 		else
+		{
 			AfxMessageBox("账户名或者密码错误");
+		}
 	}
 
+}
+
+bool CLoginDlg::IsUserType()
+{
+	return this->userType;
 }

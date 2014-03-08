@@ -77,34 +77,12 @@ IDR_LIBRARTYPE          ICON    DISCARDABLE     "res\\LibraryDoc.ico"
 
 IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
 BEGIN
-    POPUP "文件(&F)"
+    POPUP "用户管理"
     BEGIN
-        MENUITEM "新建(&N)\tCtrl+N",            ID_FILE_NEW
-        MENUITEM "打开(&O)...\tCtrl+O",         ID_FILE_OPEN
-        MENUITEM "保存(&S)\tCtrl+S",            ID_FILE_SAVE
-        MENUITEM "另存为(&A)...",               ID_FILE_SAVE_AS
-        MENUITEM SEPARATOR
-        MENUITEM "打印(&P)...\tCtrl+P",         ID_FILE_PRINT
-        MENUITEM "打印预览(&V)",                ID_FILE_PRINT_PREVIEW
-        MENUITEM "打印设置(&R)...",             ID_FILE_PRINT_SETUP
-        MENUITEM SEPARATOR
-        MENUITEM "最近文件",                    ID_FILE_MRU_FILE1, GRAYED
-        MENUITEM SEPARATOR
-        MENUITEM "退出(&X)",                    ID_APP_EXIT
+        MENUITEM "用户列表",                    ID_USER_LIST
     END
-    POPUP "编辑(&E)"
-    BEGIN
-        MENUITEM "撤消(&U)\tCtrl+Z",            ID_EDIT_UNDO
-        MENUITEM SEPARATOR
-        MENUITEM "剪切(&T)\tCtrl+X",            ID_EDIT_CUT
-        MENUITEM "复制(&C)\tCtrl+C",            ID_EDIT_COPY
-        MENUITEM "粘贴(&P)\tCtrl+V",            ID_EDIT_PASTE
-    END
-    POPUP "查看(&V)"
-    BEGIN
-        MENUITEM "工具栏(&T)",                  ID_VIEW_TOOLBAR
-        MENUITEM "状态栏(&S)",                  ID_VIEW_STATUS_BAR
-    END
+    MENUITEM "图书管理",                    65535
+    MENUITEM "借阅管理",                    65535
     POPUP "帮助(&H)"
     BEGIN
         MENUITEM "关于 Library(&A)...",         ID_APP_ABOUT
@@ -166,6 +144,17 @@ BEGIN
                     ES_AUTOHSCROLL
 END
 
+IDD_USERLIST DIALOG DISCARDABLE  0, 0, 303, 170
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "用户列表"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,82,143,50,14
+    PUSHBUTTON      "取消",IDCANCEL,171,143,50,14
+    CONTROL         "List1",IDC_USERLIST,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,7,7,289,122
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -188,8 +177,9 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "080404B0"
+        BLOCK "080404b0"
         BEGIN
+            VALUE "Comments", "\0"
             VALUE "CompanyName", "\0"
             VALUE "FileDescription", "Library Microsoft 基础类应用程序\0"
             VALUE "FileVersion", "1, 0, 0, 1\0"
@@ -197,8 +187,10 @@ BEGIN
             VALUE "LegalCopyright", "版权所有 (C) 2014\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "Library.EXE\0"
+            VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "Library 应用程序\0"
             VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "SpecialBuild", "\0"
         END
     END
     BLOCK "VarFileInfo"
@@ -232,6 +224,14 @@ BEGIN
         RIGHTMARGIN, 202
         TOPMARGIN, 7
         BOTTOMMARGIN, 101
+    END
+
+    IDD_USERLIST, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 296
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 163
     END
 END
 #endif    // APSTUDIO_INVOKED

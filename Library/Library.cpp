@@ -72,8 +72,11 @@ BOOL CLibraryApp::InitInstance()
 
 	//Login Dialog
 	CLoginDlg cLoginDlg;
+
+	/*
 	if(cLoginDlg.DoModal() != IDOK)
 		return false;
+	*/
 
 	// Register the application's document templates.  Document templates
 	//  serve as the connection between documents, frame windows and views.
@@ -93,6 +96,13 @@ BOOL CLibraryApp::InitInstance()
 	// Dispatch commands specified on the command line
 	if (!ProcessShellCommand(cmdInfo))
 		return FALSE;
+
+	if(!cLoginDlg.IsUserType())
+	{
+		CMenu *menu = m_pMainWnd->GetMenu();
+		menu->DeleteMenu(0,MF_BYPOSITION);
+		m_pMainWnd->DrawMenuBar();				//ÖØ»æ²Ëµ¥À¸
+	}
 
 	// The one and only window has been initialized, so show and update it.
 	m_pMainWnd->ShowWindow(SW_SHOW);

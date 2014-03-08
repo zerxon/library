@@ -15,12 +15,17 @@
 class UserService  
 {
 private:
-	CMySQLMan cMySQLMan;
+	CMySQLMan *cMySQLMan;
+	bool userType;
+	static UserService* userService;
 
 public:
+	static UserService* GetInstance();
 	UserService();
 	virtual ~UserService();
+	bool IsUserType();
 	bool Login(CString sid, CString password);
+	vector<User> UserService::GetUsers();
 };
 
 #endif // !defined(AFX_USERSERVICE_H__36126FED_DD2F_4589_9D49_66EAD155DC2C__INCLUDED_)
