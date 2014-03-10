@@ -17,10 +17,10 @@ Class5=CLoginDlg
 Class6=CMainFrame
 
 ResourceCount=4
-Resource1=IDD_USERLIST
-Resource2=IDD_ABOUTBOX
+Resource1=IDD_ABOUTBOX
+Resource2=IDD_LOGIN
 Class7=CTestDlg
-Resource3=IDD_LOGIN
+Resource3=IDD_USERLIST
 Class8=CUserListDlg
 Resource4=IDR_MAINFRAME
 

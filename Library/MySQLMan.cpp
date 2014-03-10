@@ -22,7 +22,7 @@ CMySQLMan::CMySQLMan()
 {
 	strcpy(m_host, "localhost");
 	strcpy(m_user, "root");
-	strcpy(m_password, "toor");
+	strcpy(m_password, "123456");
 	strcpy(m_db, "library");
 	m_port = 3306;
 	InitializeCriticalSection(&m_csList);
