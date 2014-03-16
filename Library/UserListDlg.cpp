@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "library.h"
 #include "UserListDlg.h"
+#include "UserEditDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -37,6 +38,8 @@ void CUserListDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CUserListDlg, CDialog)
 	//{{AFX_MSG_MAP(CUserListDlg)
+	ON_BN_CLICKED(IDC_EDIT, OnEdit)
+	ON_BN_CLICKED(IDC_DELETE, OnDelete)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -49,6 +52,7 @@ BOOL CUserListDlg::OnInitDialog()
 	
 	// TODO: Add extra initialization here
 	this->initUserList();
+	this->refreshData();
 	
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -58,13 +62,20 @@ void CUserListDlg::initUserList()
 {
 	m_userList.SetExtendedStyle(LVS_EX_GRIDLINES|LVS_EX_FULLROWSELECT|LVS_EX_ONECLICKACTIVATE);
 	m_userList.InsertColumn(0,"学号",LVCFMT_LEFT,40);
-	m_userList.SetColumnWidth(0,130); //设置宽度
 	m_userList.InsertColumn(1,"姓名",LVCFMT_LEFT,40);
-	m_userList.SetColumnWidth(1,100);
 	m_userList.InsertColumn(2,"性别",LVCFMT_LEFT,40);
-	m_userList.SetColumnWidth(2,50);
 	m_userList.InsertColumn(3,"管理员",LVCFMT_LEFT,40);
-	m_userList.SetColumnWidth(3,80);
+
+	CRect rect;
+	m_userList.GetClientRect(rect);
+	for(int i=0;i<4;i++) {
+		m_userList.SetColumnWidth(i, rect.Width()/4); //设置宽度
+	}
+}
+
+void CUserListDlg::refreshData()
+{
+	m_userList.DeleteAllItems();
 
 	vector<User> users = userService->GetUsers();
 
@@ -74,7 +85,11 @@ void CUserListDlg::initUserList()
 		User user = *i;
 		m_userList.InsertItem(index,user.GetSid());
 		m_userList.SetItemText(index,1,user.GetName());
-		m_userList.SetItemText(index,2,user.GetSex());
+
+		if(user.GetSex() == 0)
+			m_userList.SetItemText(index,2,"男");
+		else
+			m_userList.SetItemText(index,2,"女");
 
 		CString strIsAdmin = "否";
 		if(user.GetIsAdmin())
@@ -84,4 +99,46 @@ void CUserListDlg::initUserList()
 
 		index++;
 	}
+}
+
+void CUserListDlg::OnEdit() 
+{
+	int nItem = m_userList.GetSelectionMark();
+
+	if(nItem == -1) {
+		AfxMessageBox("请选中要修改的行");
+		return;
+	}
+
+	CString sid = m_userList.GetItemText(nItem, 0);
+	CUserEditDlg cUserEditDlg;
+	cUserEditDlg.sid = sid;
+	cUserEditDlg.DoModal();
+	this->refreshData();
+}
+
+void CUserListDlg::OnDelete() 
+{
+	int nItem = m_userList.GetSelectionMark();
+
+	if(nItem == -1) {
+		AfxMessageBox("请选中要删除的行");
+		return;
+	}
+
+	 // 显示消息对话框   
+    INT_PTR nRes = MessageBox(_T("确定要删除该行？"), _T("删除用户"), MB_OKCANCEL | MB_ICONQUESTION);   
+    // 判断消息对话框返回值。如果为IDCANCEL就return，否则继续向下执行   
+    if (IDCANCEL == nRes)   
+        return;
+
+	CString sid = m_userList.GetItemText(nItem, 0);
+	bool status = userService->DeleteUserBySid(sid);
+
+	if(status)
+		AfxMessageBox("删除成功!");
+	else
+		AfxMessageBox("删除失败!");
+
+	this->refreshData();
 }

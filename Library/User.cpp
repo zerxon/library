@@ -61,14 +61,9 @@ void User::SetSex(int sex)
 	this->sex = sex;
 }
 
-CString User::GetSex()
+int User::GetSex()
 {
-	CString strSex = "ÄÐ";
-
-	if(this->sex == 1)
-		strSex = "Å®";
-
-	return strSex;
+	return this->sex;
 }
 
 void User::SetIsAdmin(bool isAdmin)

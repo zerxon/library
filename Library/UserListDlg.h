@@ -17,6 +17,7 @@ class CUserListDlg : public CDialog
 {
 // Construction
 public:
+	void refreshData();
 	void initUserList();
 	CUserListDlg(CWnd* pParent = NULL);   // standard constructor
 
@@ -43,6 +44,8 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(CUserListDlg)
 	virtual BOOL OnInitDialog();
+	afx_msg void OnEdit();
+	afx_msg void OnDelete();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

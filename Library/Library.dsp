@@ -121,6 +121,10 @@ SOURCE=.\StdAfx.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\UserEditDlg.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\UserListDlg.cpp
 # End Source File
 # End Group
@@ -154,6 +158,10 @@ SOURCE=.\Resource.h
 # Begin Source File
 
 SOURCE=.\StdAfx.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\UserEditDlg.h
 # End Source File
 # Begin Source File
 

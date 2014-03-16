@@ -87,3 +87,61 @@ vector<User> UserService::GetUsers()
 
 	return users;
 }
+
+User UserService::GetUserBySid(CString sid)
+{
+	User user;
+
+	CString sql;
+	sql.Format("select * from user where sid='%s'", sid);
+	MYSQL_RES *res = cMySQLMan->SelectRecord(sql);
+	MYSQL_ROW record = cMySQLMan->GetRecord(res);
+
+	if(record) {
+		user.SetSid(record[1]);
+		user.SetName(record[2]);
+		user.SetSex(_ttoi(record[4]));
+		user.SetIsAdmin(_ttoi(record[5]) > 0);
+	}
+
+	return user;
+}
+
+bool UserService::AddUser(User user)
+{
+	CString sql;
+	sql.Format("insert into user values('%s', '%s', '%s', %d, %d)", 
+		user.GetSid(),
+		user.GetName(),
+		user.GetPassword(),
+		user.GetSex(),
+		user.GetIsAdmin());
+
+	bool satatus = cMySQLMan->InsertRecord(sql);
+
+	return true;
+}
+
+bool UserService::UpdateUser(User user)
+{
+	CString sql;
+	sql.Format("update user set name='%s', sex=%d, is_admin=%d where sid='%s'", 
+		user.GetName(),
+		user.GetSex(),
+		user.GetIsAdmin(),
+		user.GetSid());
+
+	bool satatus = cMySQLMan->UpdateRecord(sql);
+
+	return true;
+}
+
+bool UserService::DeleteUserBySid(CString sid)
+{
+	CString sql;
+	sql.Format("delete from user where sid='%s'", sid);
+	
+	bool status = cMySQLMan->DelRecord(sql);
+
+	return true;
+}

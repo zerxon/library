@@ -32,7 +32,7 @@ public:
 	CString GetPassword();
 
 	void SetSex(int sex);
-	CString GetSex();
+	int GetSex();
 
 	void SetIsAdmin(bool isAdmin);
 	bool GetIsAdmin();
